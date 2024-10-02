@@ -1,0 +1,57 @@
+datadir:
+  ../eulernjf_data/walk/test_2/
+bodymodel: "../body_models/"
+training:
+  batch: 1 
+  epochs: 100 
+  lr: 1e-3
+  expt: "njfode"
+  code_size: 16 
+  encoding: "joints"
+  root_zero: True 
+  aud_dim: 0
+data:
+  seq_length: 32 
+  max_frames: 10000
+  feature_dir: ../eulernjf_data/wks/
+weight:
+  directory : "../models_trj/walk/"
+  path: "../models_trj/walk/walk_trj"
+  pose: "../models/posing_walk_pointfeat_all_dmpl" 
+logging:
+  directory : "../logs/walk_trj/"
+test:
+  test: True 
+  datadir:
+    ../eulernjf_data/walk/train_5/
+  dataset_meshdir:
+    ../eulernjf_data/first_frames/
+  motion_name:
+    "jumping_jacks"
+  mode:
+    "human"
+  nonhuman_mesh:
+    #../eulernjf_data/nonhuman/holey/holey_man_rot90.ply 
+    #../eulernjf_data/nonhuman/bunny/bunny_rot90.ply 
+    ../eulernjf_data/nonhuman/skeletonzombie/skeletonzombie_rot90.ply 
+    #../eulernjf_data/nonhuman/greenmonster/green_monster.ply 
+    #../eulernjf_data/nonhuman/jared/jared_rot90.ply 
+    #../eulernjf_data/nonhuman/horse/horse.ply 
+    #../eulernjf_data/nonhuman/reptile/reptile_meshlab.ply 
+    #../eulernjf_data/nonhuman/cyclops/cyclops.ply 
+    #../eulernjf_data/nonhuman/octoman/octoman.ply 
+  nonhuman_features:
+    #../eulernjf_data/nonhuman/holey/holey_man_rot90.npy
+    #../eulernjf_data/nonhuman/bunny/bunny_rot90.npy
+    ../eulernjf_data/nonhuman/skeletonzombie/skeletonzombie_rot90.npy
+    #../eulernjf_data/nonhuman/greenmonster/green_monster.npy
+    #../eulernjf_data/nonhuman/jared/jared_rot90.npy
+    #../eulernjf_data/nonhuman/horse/horse.npy
+    #../eulernjf_data/nonhuman/reptile/reptile_meshlab.npy
+    #../eulernjf_data/nonhuman/octoman/octoman.npy
+  objroot: ../eulernjf_data/running_on_spot_dino/
+  src_names: ["26","83"] #"50026"] #"50027"] #"50004","50007","50009","50022","50026","50027"]
+  tgt_names: ["91"] #,"82","90","105"] #"50021"] #"50004"]
+  result_dir: "../Siggraph_Asia/walking/unseen/"
+  stepsize: 0.05
+  method: "trj"

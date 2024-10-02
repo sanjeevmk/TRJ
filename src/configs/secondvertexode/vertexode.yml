@@ -1,0 +1,34 @@
+datadir:
+  #../eulernjf_data/subject_50027_jump/train/
+  ../eulernjf_data/jumping_jacks/train/
+  #../eulernjf_data/subject_50002_jump/train/
+bodymodel: "../body_models/"
+training:
+  batch: 1 
+  epochs: 2000
+  lr: 1e-3
+  expt: "njfode"
+  code_size: 16 
+  encoding: "joints"
+data:
+  seq_length: 6 
+  max_frames: 10000
+weight:
+  directory : "../models/"
+  path: "../models/50002_Vode_jj_pointfeat"
+  pose: "../models/50002_posing_jj_pointfeat" 
+logging:
+  #directory : "../logs/secondary_jj_wo_primattn_eval/"
+  #directory : "../logs/secondary_jj_pointfeat_simul/"
+  #directory : "../logs/secondary_jj_pointfeat/"
+  directory : "../logs/50002_Vsecondary_jj_pointfeat/"
+test:
+  test: False 
+  datadir:
+    ../eulernjf_data/subject_50002_jump/train/
+  objroot: ../eulernjf_data/running_on_spot_dino/
+  src_names: ["50002"] #"50027"] #"50004","50007","50009","50022","50026","50027"]
+  tgt_names: ["50002"] #"50021"] #"50004"]
+  result_dir: "../sig24_results/jumping_jacks/"
+  stepsize: 0.05
+  method: "eulernjf"

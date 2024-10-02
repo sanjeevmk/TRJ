@@ -1,0 +1,41 @@
+datadir:
+  ../eulernjf_data/jumping_jacks/train/
+bodymodel: "../body_models/"
+training:
+  batch: 1 
+  epochs: 2000
+  lr: 1e-3
+  expt: "njfode"
+  code_size: 16 
+  encoding: "joints"
+data:
+  seq_length: 32 
+  max_frames: 10000
+weight:
+  directory : "../models/"
+  path: "../models/ode_jj_pointfeat"
+  pose: "../models/posing_jj_pointfeat_all_dmpl" 
+logging:
+  directory : "../logs/secondary_jj_pointfeat/"
+test:
+  test: True 
+  datadir:
+    ../eulernjf_data/subject_50027_jump/train/
+  dataset_meshdir:
+    ../eulernjf_data/first_frames/
+  motion_name:
+    "jumping_jacks"
+  mode:
+    "nonhuman"
+  nonhuman_mesh:
+    #../eulernjf_data/nonhuman/bunny/bunny.ply 
+    ../eulernjf_data/nonhuman/jared/jared.ply
+  nonhuman_features:
+    #../eulernjf_data/nonhuman/bunny/bunny.npy
+    ../eulernjf_data/nonhuman/jared/jared.npy
+  objroot: ../eulernjf_data/running_on_spot_dino/
+  src_names: ["50027"] #"50004"] #"50027","50004","50022"] #"50027"] #"50004","50007","50009","50022","50026","50027"]
+  tgt_names: ["50027"] #"50021"] #"50004"]
+  result_dir: "../sig24_results/jumping_jacks_jared/"
+  stepsize: 0.05
+  method: "eulernjf"

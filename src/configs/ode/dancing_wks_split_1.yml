@@ -1,0 +1,66 @@
+datadir:
+  ../eulernjf_data/dance/test_1/
+bodymodel: "../body_models/"
+training:
+  batch: 1 
+  epochs: 300 
+  lr: 1e-3
+  expt: "njfode"
+  code_size: 16 
+  encoding: "joints"
+  aug_dim: 0
+data:
+  seq_length: 32 
+  max_frames: 1000 
+  feature_dir: ../eulernjf_data/wks/
+weight:
+  directory : "../models_trj/dancing/"
+  #path: "../models/ode_dance_pointfeat_wks_split_1_b01_1kf"
+  #path: "../models/ode_dance_pointfeat_wks_split_1_b01_1kf_preloaded"
+  path: "../models_trj/dancing/trj_dance"
+  #preload_path: "../models/ode_dance_pointfeat_wks_split_1_b01"
+  #preload_path: "../models/ode_dance_pointfeat_wks_split_1_b01_1kf_preloaded"
+  #preload_path: "../models/ode_dance_pointfeat_wks_split_1_b01_1kf_preloaded"
+  pose: "../models/posing_dance_pointfeat_all_dmpl" 
+logging:
+  #directory : "../logs/secondary_dance_pointfeat_wks_split_1_preloaded/"
+  directory : "../logs/dancing_trj/"
+test:
+  test: True 
+  sig: False 
+  datadir:
+    ../eulernjf_data/dance/train_1/
+  dataset_meshdir:
+    ../eulernjf_data/first_frames/
+  motion_name:
+    "jumping_jacks"
+  mode:
+    "nonhuman"
+  nonhuman_mesh:
+    #../eulernjf_data/nonhuman/bunny/bunny.ply 
+    ../eulernjf_data/nonhuman/skeletonzombie/skeletonzombie_t_rot90.ply 
+    #../eulernjf_data/nonhuman/maynard/maynard_t.ply 
+    #../eulernjf_data/nonhuman/holey/holey_man_rot90.ply 
+    #../eulernjf_data/nonhuman/mousey/mousey_t.ply 
+    #../eulernjf_data/nonhuman/jared/jared_rot90.ply 
+    #../eulernjf_data/nonhuman/horse/horse.ply 
+    #../eulernjf_data/nonhuman/reptile/reptile_meshlab.ply 
+    #../eulernjf_data/nonhuman/faust/woman_scan.ply 
+    #../eulernjf_data/nonhuman/prisoner/prisoner_t.ply 
+  nonhuman_features:
+    #../eulernjf_data/nonhuman/bunny/bunny.npy
+    ../eulernjf_data/nonhuman/skeletonzombie/skeletonzombie_t_rot90.npy
+    #../eulernjf_data/nonhuman/maynard/maynard_t.npy
+    #../eulernjf_data/nonhuman/holey/holey_man_rot90.npy
+    #../eulernjf_data/nonhuman/mousey/mousey_t.npy
+    #../eulernjf_data/nonhuman/jared/jared_rot90.npy
+    #../eulernjf_data/nonhuman/horse/horse.npy
+    #../eulernjf_data/nonhuman/reptile/reptile_meshlab.npy
+    #../eulernjf_data/nonhuman/prisoner/prisoner_t.npy
+    #../eulernjf_data/nonhuman/faust/woman_scan.npy
+  objroot: ../eulernjf_data/running_on_spot_dino/
+  src_names: ["Fanie"] #"50026"] #"50027"] #"50004","50007","50009","50022","50026","50027"]
+  tgt_names: ["Theodora"] #"50021"] #"50004"]
+  result_dir: ../Siggraph_Asia/dancing/unseen/ #"../sig24/dance_pre/temp/"
+  stepsize: 0.05
+  method: "trj"

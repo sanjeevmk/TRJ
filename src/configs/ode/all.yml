@@ -1,0 +1,94 @@
+datadir:
+  ../eulernjf_data/all_motions/
+bodymodel: "../body_models/"
+training:
+  batch: 1 
+  epochs: 150 
+  lr: 1e-3
+  expt: "njfode"
+  code_size: 16 
+  encoding: "joints"
+  aug_dim: 256 
+data:
+  seq_length: 32 
+  max_frames: 10000
+  feature_dir: ../eulernjf_data/wks/
+weight:
+  directory : "../models_ours/all_motions/"
+  #directory : "../models_ours/punching2d/"
+  path: "../models_ours/all_motions/all_centroids_ae" #Ours
+  #path: "../models_ours/punching3d/punching_centroids_ae" #Ours
+  #path: "../models_ours/punching3d/punching_noencode" #Ours, w/o input encoding
+  #path: "../models_ours/punching2d/punching_centroids_ae_2d" #Ours, w/o input encoding
+  #path: "../models_ours/punching2d/punching_centroids_ae_2d_correct" #Ours, w/o input encoding
+  # pose: "../models/posing_punching_pointfeat" 
+  pose: "../models_ours/all_motions/all_centroids_ae" 
+logging:
+  directory : "../logs/all_centroids_ae/"  # Ours
+  #directory : "../logs/punching_noencode/"  # Ours, w/o encoding
+  #directory : "../logs/punching_centroids_ae_2d/"  # Ours, w/o encoding
+  #directory : "../logs/punching_centroids_ae_2d_correct/"  # Ours, w/o encoding
+ae:
+  train: True 
+  datadir: ../eulernjf_data/all_motions/
+  #inp: '2d'
+  inp: '3d'
+  epochs: 1000
+  preload_path: "../models_ours/all_motions/all_centroids_ae"
+  #preload_path: "../models_ours/punching2d/punching_centroids_ae_2d"
+  #preload_path: "../models_ours/punching2d/punching_centroids_ae_2d_correct"
+  #encode: False # w/o i/p encoding
+  encode: True # Ours
+test:
+  test: False 
+  datadir:
+    ../eulernjf_data/all_motions/
+    #../eulernjf_data/subject_50027_run/train/
+  dataset_meshdir:
+    ../eulernjf_data/first_frames/
+  motion_name:
+    "punching"
+  mode:
+    "human"
+  sig:
+    True 
+  nonhuman_mesh:
+    #../eulernjf_data/nonhuman/jared/jared_rot90.ply 
+    #../eulernjf_data/nonhuman/bunny/bunny_rot90.ply 
+    #../eulernjf_data/nonhuman/greenmonster/green_monster_rot90.ply 
+    #../eulernjf_data/nonhuman/faust/scan.ply 
+    #../eulernjf_data/nonhuman/warrok/warrok_meshlab.ply 
+    #../eulernjf_data/nonhuman/mousey/mousey_meshlab.ply 
+    #../eulernjf_data/nonhuman/prisoner/prisoner.ply 
+    #../eulernjf_data/nonhuman/maynard/maynard.ply 
+    #../eulernjf_data/nonhuman/holey/holey_man_rot90.ply 
+    #../eulernjf_data/nonhuman/jared/jared_v1.ply 
+    #../eulernjf_data/nonhuman/horse/horse.ply 
+    ../eulernjf_data/nonhuman/reptile/reptile_meshlab_rot90.ply 
+    #../eulernjf_data/nonhuman/octoman/octoman.ply 
+  nonhuman_features:
+    #../eulernjf_data/nonhuman/jared/jared_rot90.npy
+    #../eulernjf_data/nonhuman/bunny/bunny_rot90.npy
+    #../eulernjf_data/nonhuman/bunny/bunny.npy
+    #../eulernjf_data/nonhuman/greenmonster/green_monster_rot90.npy
+    #../eulernjf_data/nonhuman/faust/scan.npy
+    #../eulernjf_data/nonhuman/warrok/warrok_meshlab.npy
+    #../eulernjf_data/nonhuman/prisoner/prisoner.npy
+    #../eulernjf_data/nonhuman/maynard/maynard.npy
+    #../eulernjf_data/nonhuman/mousey/mousey_meshlab.npy
+    #../eulernjf_data/nonhuman/holey/holey_man_rot90.npy
+    #../eulernjf_data/nonhuman/jared/jared_v1.npy
+    #../eulernjf_data/nonhuman/horse/horse.npy
+    ../eulernjf_data/nonhuman/reptile/reptile_meshlab_rot90.npy
+    #../eulernjf_data/nonhuman/octoman/octoman.npy
+  objroot: ../eulernjf_data/punching_on_spot_dino/
+  src_names: ["50002"] #"50021","50026"] #"50009"] #,"50027"] #"50021","50026"] #"50026"] #"50027"] #"50004","50007","50009","50022","50026","50027"]
+  tgt_names: ["50025"] #"50026","50027"] #,"50007","50026","50022","50020"]
+  result_dir: "../Siggraph_Asia/punching/unseen/"
+  stepsize: 0.0
+  method: "smf" # ours
+  #method: "ablation_noencode"
+  #method: "posevit"
+  #method: "augode_eulernjf_weightedjac_aug256_woproj"
+  #method: "augode_eulernjf_fulljac_aug64_woproj"
+  

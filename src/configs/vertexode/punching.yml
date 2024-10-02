@@ -1,0 +1,51 @@
+datadir:
+  ../eulernjf_data/punching/train_1/
+  #../eulernjf_data/subject_50027_jump/train/
+  #../eulernjf_data/subject_50002_50027_run/train/
+bodymodel: "../body_models/"
+training:
+  batch: 1 
+  epochs: 200 
+  lr: 1e-3
+  expt: "njfode"
+  code_size: 16 
+  encoding: "joints"
+data:
+  seq_length: 32 
+  max_frames: 10000
+  feature_dir: ../eulernjf_data/wks/
+weight:
+  directory : "../models/"
+  path: "../models/vode_punching_pointfeat"
+logging:
+  directory : "../logs/vode_punching_pointfeat/"
+  #directory : "../logs/50002_posing_jj_pointfeat/"
+test:
+  test: True 
+  datadir:
+    ../eulernjf_data/punching/train_1/
+    #../eulernjf_data/subject_50027_run/train/
+  dataset_meshdir:
+    ../eulernjf_data/first_frames/
+  motion_name:
+    "jumping_jacks"
+  mode:
+    "human"
+  nonhuman_mesh:
+    #../eulernjf_data/nonhuman/bunny/bunny.ply 
+    #../eulernjf_data/nonhuman/jared/jared_v1.ply 
+    ../eulernjf_data/nonhuman/holey/holey_man.ply 
+    #../eulernjf_data/nonhuman/horse/horse.ply 
+    #../eulernjf_data/nonhuman/reptile/reptile_meshlab.ply 
+  nonhuman_features:
+    #../eulernjf_data/nonhuman/bunny/bunny.npy
+    #../eulernjf_data/nonhuman/jared/jared_v1.npy
+    ../eulernjf_data/nonhuman/holey/holey_man_vertex.npy
+    #../eulernjf_data/nonhuman/horse/horse.npy
+    #../eulernjf_data/nonhuman/reptile/reptile_meshlab.npy
+  objroot: ../eulernjf_data/running_on_spot_dino/
+  src_names: ["50022"]
+  tgt_names: ["50022"] #,"50004","50009","50020","50021","50027"] #"50021"] #"50004"]
+  result_dir: "../sig24/punching_vode/temp/"
+  stepsize: 0.05
+  method: "eulernjf"
